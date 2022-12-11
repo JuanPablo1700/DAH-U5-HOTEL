@@ -1,0 +1,158 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-row>
+      <ion-img id="headerLogo" src="/assets/images/logo.png" size="xs"></ion-img>
+      <ion-label id="headerTitle" align-self-end>INFORMACION DE INGRESO</ion-label>  
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+  
+  <div id="container">
+    <form >
+      <ion-select placeholder="Idioma"  id="categoria" name="categoria"  (ionChange)="obtenerValor($event)">
+        <ion-select-option value="1">Español</ion-select-option>
+        <ion-select-option value="2">Ingles</ion-select-option>
+        <ion-select-option value="3">Frances</ion-select-option>
+     </ion-select>
+
+      <div class="formulario">
+        <ng-container *ngIf="seleccion=='1'">
+        <h1 style="color:cornflowerblue">Bienvenido {{person.name}}</h1>
+        <h1>UBICACION</h1>
+        <div class="slider-container">  
+          <img
+            class="slider-item"
+            src="/assets/images/hotel.PNG"
+          />
+          <img
+            class="slider-item"
+            src="/assets/images/hotel2.PNG"
+          />
+        </div>
+        <h2>Ubicado a las orillas de la Laguna de Santa María del Oro, que se formó en el cráter de un volcán 
+            dormido, Santa María Resort es un complejo turístico estilo "Boutique". </h2>
+        <h1>PROCESO DE REGISTRO</h1>
+        <h2>Es necesario que el huésped proporcione todos los datos que el recepcionista le solicite para llevar
+            a cabo el registro por medio de la aplicacion del hotel. Una vez haya concluido el registro, el recepcionista 
+            le indicara cual es su habitación y le dará a conocer la contraseña de la caja de seguridad donde encontrará 
+            la llave de su habitación.
+        </h2>
+        <h1>HORARIOS</h1>
+        <img src="/assets/images/horarios.png">
+        <h2>El Hotel estará abierto al público de las 8:00 horas a las 21:30 horas, si el huésped desea 
+            entrar o salir después de las 21:30 horas, entonces éste deberá de tocar el timbre de la puerta 
+            principal. La puerta de acceso al hotel después de las 21:30 horas será abierta y cerrada 
+            únicamente por personal del hotel.</h2>
+        <h2>ENTRADA:</h2>
+        <h2>La hora de registro para entrar a la habitación será de las 15:00 horas 
+            en adelante.</h2>
+            <h2>Recuerde liquidar el monto restante: {{montoRestante}}</h2>
+        <h2>SALIDA:</h2>
+        <h2>La hora de salida deberá ser a más tardar a las 12:00 horas, 
+            caso contrario se cobrará una noche adicional de estadía. Para el caso de 
+            que por razones personales el huésped tenga que registrar su entrada después 
+            de las 20:00 horas este deberá de avisar con 24 horas de anticipación a su llegada</h2>
+        <h1>CAJA DE SEGURIDAD</h1>
+        <h2>Una vez realizado el registro, el recepcionista le dara a conocer la ubicación de la caja de seguridad
+            dentro de la cual se encuentra la llave<ng-container *ngIf="tokenAvailable()">, para acceder a la caja de seguridad debera ingresar el codigo: <b style="color: RED;">{{room.enterCode}}</b></ng-container>.
+        </h2><br><br><br>
+      </ng-container>
+
+      <!--------------------------------------------------------------------------------------------->
+
+      <ng-container *ngIf="seleccion=='2'">
+        <h1 style="color:cornflowerblue">Welcome {{person.name}}</h1>
+        <h1>LOCATION</h1>
+        <div class="slider-container">  
+          <img
+            class="slider-item"
+            src="/assets/images/hotel.PNG"
+          />
+          <img
+            class="slider-item"
+            src="/assets/images/hotel2.PNG"
+          />
+        </div>
+        <h2>Located on the shores of the Santa María del Oro Lagoon, which was formed in the crater of a volcano
+          asleep, Santa Maria Resort is a "Boutique" style resort. </h2>
+        <h1>REGISTRATION PROCESS</h1>
+        <h2>It is necessary for the guest to provide all the data that the receptionist requests to bring
+          carry out the registration through the hotel application. Once registration is complete, the receptionist
+          It will indicate which is your room and will give you the password of the safe where you will find
+          your room key.
+        </h2>
+        <h1>SCHEDULE</h1>
+        <img src="/assets/images/horarios.png">
+        <h2>The Hotel will be open to the public from 8:00 a.m. to 9:30 p.m., if the guest wishes
+            enter or leave after 9:30 p.m., then he must ring the doorbell
+            major. The access door to the hotel after 9:30 p.m. will be opened and closed
+            only by hotel staff.</h2>
+        <h2>INPUT:</h2>
+        <h2>The check-in time to enter the room will be at 3:00 p.m.
+            onwards.</h2>
+        <h2>Remember to pay the remaining amount: {{montoRestante}}</h2>
+        <h2>OUTPUT:</h2>
+        <h2>The departure time must be no later than 12:00,
+            Otherwise, an additional night's stay will be charged. In the case of
+            that for personal reasons the guest has to register his entrance after
+            after 8:00 p.m., they must notify 24 hours in advance of their arrival</h2>
+        <h1>SAFE BOX</h1>
+        <h2>Once you have registered, the receptionist will let you know the location of the safe
+          inside which the key is located, to access the safe you must enter the code: <b style="color: RED;">{{room.enterCode}}</b>.
+        </h2><br><br><br>
+      </ng-container>
+
+      <!--------------------------------------------------------------------------------------->
+
+      <ng-container *ngIf="seleccion=='3'">
+        <h1 style="color:cornflowerblue">Bienvenue {{person.name}}</h1>
+        <h1>EMPLACEMENT</h1>
+        <div class="slider-container">  
+          <img
+            class="slider-item"
+            src="/assets/images/hotel.PNG"
+          />
+          <img
+            class="slider-item"
+            src="/assets/images/hotel2.PNG"
+          />
+        </div>
+        <h2>Situé sur les rives de la lagune de Santa María del Oro, qui s'est formée dans le cratère d'un volcan
+          endormi, Santa Maria Resort est un complexe de style "Boutique". </h2>
+        <h1>PROCESSUS D'INSCRIPTION</h1>
+        <h2>Il est nécessaire que le client fournisse toutes les données que la réceptionniste demande à apporter
+            effectuer l'enregistrement via l'application de l'hôtel. Une fois l'inscription terminée, la réceptionniste
+            Il vous indiquera quelle est votre chambre et vous donnera le mot de passe du coffre-fort où vous trouverez
+            votre clé de chambre.
+        </h2>
+        <h1>CALENDRIER</h1>
+        <img src="/assets/images/horarios.png">
+        <h2>L'hôtel sera ouvert au public de 8h00 à 21h30, si le client le souhaite
+            entrer ou sortir après 21h30, puis il doit sonner à la porte
+            Majeur. La porte d'accès à l'hôtel après 21h30 sera ouverte et fermée
+            uniquement par le personnel de l'hôtel.</h2>
+        <h2>ENTRÉE :</h2>
+        <h2>L'heure d'enregistrement pour entrer dans la chambre sera à 15h00.
+            à partir de.</h2>
+        <h2>N'oubliez pas de payer le montant restant : {{montoRestante}}</h2>
+        <h2>SORTIE :</h2>
+        <h2>L'heure de départ doit être au plus tard à 12h00,
+            Dans le cas contraire, une nuit supplémentaire sera facturée. Dans le cas de
+            que pour des raisons personnelles, le client doit enregistrer son entrée après
+            après 20h00, ils doivent prévenir 24h à l'avance de leur arrivée</h2>
+        <h1>COFFRE SÛR</h1>
+        <h2>Une fois que vous vous êtes inscrit, la réceptionniste vous indiquera l'emplacement du coffre-fort
+          à l'intérieur duquel se trouve la clé, pour accéder au coffre-fort, vous devez saisir le code : <b style="color: RED;">{{room.enterCode}}</b>.
+        </h2><br><br><br>
+      </ng-container>
+      </div>
+    </form>
+  </div>
+</ion-content>
